@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    html, body { width: 460px; }
+    body { max-height: 600px; display: flex; flex-direction: column; }
+    header { flex: none; background: #fff; border-bottom: 1px solid var(--line); padding: 12px 14px; }
+    .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .top h1 { font-size: 16px; margin: 0; }
+    #status { color: var(--green); font-size: 13px; font-weight: 600; }
+    #fill { width: 100%; padding: 10px; font-size: 15px; }
+    #fillMsg { font-size: 12px; margin-top: 6px; min-height: 0; }
+    #fillMsg:empty { display: none; }
+    #fillMsg.ok { color: var(--green); }
+    #fillMsg.error { color: var(--red); }
+    main { flex: 1; min-height: 0; overflow-y: auto; padding: 12px 14px 20px; }
+    .toggle { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 13px; white-space: nowrap; }
+    .toggle input { margin: 0; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+    .card h2 { font-size: 14px; margin: 0 0 2px; }
+    .card > p { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
+    .card > p:empty { display: none; }
+    .grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px 12px; }
+    .grid.files { grid-template-columns: minmax(0, 1fr); }
+    .grid label { min-width: 0; }
+    .grid label > span { display: block; font-weight: 500; font-size: 13px; margin-bottom: 3px; }
+    .file-row { display: flex; align-items: center; gap: 8px; border: 1px dashed var(--line); border-radius: 8px; padding: 6px 8px; min-width: 0; }
+    .file-row .name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 12px; }
+    .file-row button { flex: none; padding: 5px 10px; }
+    .file-row.has { border-style: solid; background: #f3fbf6; }
+    .file-row.has .name { color: var(--green); font-weight: 500; }
+    .file-row.err .name { color: var(--red); white-space: normal; }
+    .file-row input { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="top"><h1>IISM autofill</h1><span id="status"></span></div>
+    <label class="toggle"><input type="checkbox" id="autoRun" /> Auto-run when the form opens</label>
+    <button class="primary" id="fill">Fill this tab</button>
+    <div id="fillMsg"></div>
+  </header>
+  <main id="root"></main>
+  <script src="fields.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
